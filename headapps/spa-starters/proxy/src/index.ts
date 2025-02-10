@@ -6,6 +6,7 @@ import { debug } from '@sitecore-jss/sitecore-jss';
 import { editingRouter, healthCheck } from '@sitecore-jss/sitecore-jss-proxy';
 import { config, graphQLEndpoint } from './config';
 import { personalizeHelper, personalizePlugin } from './personalize';
+import serverless from "serverless-http";
 
 const server = express();
 
@@ -197,3 +198,6 @@ server.use(async (req, res) => {
 server.listen(config.port, () => {
   console.log(`server listening on port ${config.port}!`);
 });
+
+
+export const handler = serverless(server);
